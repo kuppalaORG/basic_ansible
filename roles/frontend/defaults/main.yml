@@ -1,0 +1,36 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for roles/frontend
+
+- name: Disable default nginx module
+  ansible.builtin.shell: dnf module disable nginx -y
+
+- name: Enable Nginx 24 Version
+  ansible.builtin.shell: dnf module enable nginx:1.24 -y
+
+- name: Install the latest version of Apache
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+
+- name: Copy nginx config file
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: Remove old content (delete file)
+  ansible.builtin.file:
+    path: rm -rf /usr/share/nginx/html/*
+    state: absent
+
+- name: Download & Extract frontend content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Restart service Nginx, in all cases
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: true
