@@ -4,6 +4,6 @@
   vars:
     role_name:
     - frontend
-    - backend
+    - mongod
   roles:
     - "{{ role_name }}"
