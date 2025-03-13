@@ -55,12 +55,6 @@
 - name: Load Master Data
   ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech </app/db/master-data.js
 
-- name: SystemD setup
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: systemd
-
-
 
 - name: Start Service
   ansible.builtin.systemd_service:
