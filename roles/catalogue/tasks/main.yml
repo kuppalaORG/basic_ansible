@@ -53,7 +53,7 @@
       state: latest
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host mongo.mongod.codedeploywithbharath.tech </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech </app/db/master-data.js
 
 - name: SystemD setup
   ansible.builtin.include_role:
