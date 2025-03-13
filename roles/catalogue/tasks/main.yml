@@ -4,12 +4,12 @@
 - name: Remove the Nodje package
   ansible.builtin.shell: dnf module disable nodejs -y
 
-- name: Enable Nginx 24 Version
-  ansible.builtin.shell: dnf module enable nginx:1.20 -y
+- name: Enable nodejs 24 Version
+  ansible.builtin.shell: dnf module enable nodejs:1.20 -y
 
-- name: Install Nginx
+- name: Install nodejs
   ansible.builtin.dnf:
-    name: nginx
+    name: nodejs
     state: present
 
 - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
