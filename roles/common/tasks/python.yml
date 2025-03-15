@@ -1,0 +1,23 @@
+- name: Install necessary packages
+  ansible.builtin.dnf:
+    name:
+      - python3
+      - gcc
+      - python3-devel
+    state: present  # Ensures the packages are installed
+
+- name: Setup App Prerequisites
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-prereq
+
+- name: Download Dependencies
+  ansible.builtin.shell: pip3 install -r requirements.txt
+  args:
+    chdir: "{{ app_path }}"
+
+
+- name: SystemD setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd

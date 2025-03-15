@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/payment
+- name: Setup Python Service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: python
