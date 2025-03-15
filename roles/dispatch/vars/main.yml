@@ -1,5 +1,5 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # vars file for roles/dispatch
-component: rabbitmq
+component: dispatch
 app_path: /app
