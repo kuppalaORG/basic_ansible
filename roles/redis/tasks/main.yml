@@ -15,16 +15,16 @@
 - name: Update IP address in configuration file
   ansible.builtin.lineinfile:
     path: /etc/redis/redis.conf
-    regexp: '^listen = 127\.0\.0\.1'
-    line: 'listen = 0.0.0.0'
+    regexp: '^bind 127\.0\.0\.1'
+    line: 'bind 0.0.0.0'
     state: present
   notify: Restart Redis  # Notify handler when this updates the file
 
 - name: Update Protected mode in configuration file
   ansible.builtin.lineinfile:
     path: /etc/redis/redis.conf
-    regexp: '^protected-mode = yes'
-    line: 'protected-mode = no'
+    regexp: '^protected-mode yes'
+    line: 'protected-mode no'
     state: present
   notify: Restart Redis  # Notify handler when this updates the file
 
