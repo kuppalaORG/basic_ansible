@@ -1,41 +1,12 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for roles/catalogue
-- name: Remove the Nodje package
-  ansible.builtin.shell: dnf module disable nodejs -y
+- name: Setup NodeJs Service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
 
-- name: Enable nodejs 24 Version
-  ansible.builtin.shell: dnf module enable nodejs:20 -y
 
-- name: Install nodejs
-  ansible.builtin.dnf:
-    name: nodejs
-    state: present
-
-- name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
-  ansible.builtin.user:
-    name: roboshop
-
-- name: Download the application (like curl -o /tmp/catalogue.zip)
-  ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
-    dest: /tmp/catalogue.zip
-
-- name: Create the application directory (if not already created)
-  ansible.builtin.file:
-    path: /app
-    state: directory
-
-- name: Unzip the application into the target directory
-  ansible.builtin.unarchive:
-    src: /tmp/catalogue.zip
-    dest: /app
-    remote_src: yes
-
-- name: Install NodeJS dependencies (npm install)
-  ansible.builtin.shell: npm install
-  args:
-    chdir: /app
 
 - name: Copy Service file
   ansible.builtin.template:

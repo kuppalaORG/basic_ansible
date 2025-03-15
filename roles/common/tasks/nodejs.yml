@@ -1,0 +1,33 @@
+- name: Remove the Nodje package
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: Enable nodejs 24 Version
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+
+- name: Install nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
+
+- name: Setup App pre-requisites Service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-prereq
+
+
+- name: Install NodeJS dependencies (npm install)
+  ansible.builtin.shell: npm install
+  args:
+    chdir: "{{ app_path }}"
+
+
+- name: load Schema
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: schema
+
+
+- name: systemd setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
