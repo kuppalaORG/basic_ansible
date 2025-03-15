@@ -1,0 +1,36 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/redis
+- name: Remove the Redis package
+  ansible.builtin.shell: dnf module disable redis -y
+
+- name: Enable Redis  package
+  ansible.builtin.shell: dnf module enable redis:7 -y
+
+- name: InstallRedis  package
+  ansible.builtin.dnf:
+    name: redis
+    state: latest
+
+- name: Update IP address in configuration file
+  ansible.builtin.lineinfile:
+    path: /etc/redis/redis.conf
+    regexp: '^listen = 127\.0\.0\.1'
+    line: 'listen = 0.0.0.0'
+    state: present
+  notify: Restart Redis  # Notify handler when this updates the file
+
+- name: Update Protected mode in configuration file
+  ansible.builtin.lineinfile:
+    path: /etc/redis/redis.conf
+    regexp: '^protected-mode = yes'
+    line: 'protected-mode = no'
+    state: present
+  notify: Restart Redis  # Notify handler when this updates the file
+
+- name: Start Service
+  ansible.builtin.systemd_service:
+    name: redis.service
+    state: restarted
+    enabled: true
+    daemon-reload: true
