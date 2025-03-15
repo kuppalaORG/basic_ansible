@@ -21,7 +21,7 @@
 
 - name: Ensure master.js has appropriate permissions
   ansible.builtin.file:
-    path: "{{ app_path }}/db/master.js"
+    path: "{{ app_path }}/db/master-data.js"
     mode: "0644"
 
 - name: Verify db/master.js file exists
