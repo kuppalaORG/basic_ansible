@@ -6,5 +6,6 @@
     - frontend
     - mongod
     - catalogue
+    - redis
   roles:
     - "{{ role_name }}"
