@@ -10,6 +10,8 @@
 - name: Create App Directory
   ansible.builtin.file:
     path: "{{ app_path }}"
+    state: directory
+
 
 
 - name: Unarchive a file that needs to be downloaded (added in 2.0)
