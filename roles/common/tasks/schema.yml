@@ -9,6 +9,12 @@
     name: mongodb-mongosh
     state: latest
 
+- name: Print the current working directory
+  ansible.builtin.shell: pwd
+  args:
+    chdir: "{{ app_path }}"
+
+
 - name: Load Master Data
   ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech </db/master.js
   args:
