@@ -21,6 +21,6 @@
 
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech < db/master-data.js
-  args:
-    chdir: "{{ app_path }}"
+  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech < /app/db/master-data.js
+#  args:
+#    chdir: "{{ app_path }}"
