@@ -3,7 +3,7 @@
 # tasks file for roles/rabbitmq
 
 - name: COpy Repo file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: rabbitmq.repo
     dest: /etc/yum.repos.d/rabbitmq.repo
 
