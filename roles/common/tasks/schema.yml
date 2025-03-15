@@ -13,14 +13,18 @@
   ansible.builtin.shell: ls
   args:
     chdir: "{{ app_path }}"
-  register: pwd_result  # Capture the output
+  register: pwd_result
 
 - name: Print the current working directory
   ansible.builtin.debug:
     msg: "The current working directory is: {{ pwd_result.stdout }}"
 
+- name: Verify db/master.js file exists
+  ansible.builtin.shell: ls -l db/master.js
+  args:
+    chdir: "{{ app_path }}"
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech </db/master.js
+  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech < db/master.js
   args:
     chdir: "{{ app_path }}"
