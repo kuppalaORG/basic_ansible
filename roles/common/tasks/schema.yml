@@ -13,6 +13,11 @@
   ansible.builtin.shell: pwd
   args:
     chdir: "{{ app_path }}"
+  register: pwd_result  # Capture the output
+
+- name: Print the current working directory
+  ansible.builtin.debug:
+    msg: "The current working directory is: {{ pwd_result.stdout }}"
 
 
 - name: Load Master Data
