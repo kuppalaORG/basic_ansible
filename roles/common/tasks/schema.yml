@@ -20,7 +20,7 @@
     msg: "The current working directory is: {{ pwd_result.stdout }}"
 
 - name: Verify db/master.js file exists
-  ansible.builtin.shell: ls -l db/master.js
+  ansible.builtin.shell: ls -l /app/db/master.js
   args:
     chdir: "{{ app_path }}"
 
