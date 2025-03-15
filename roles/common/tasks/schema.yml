@@ -10,7 +10,7 @@
     state: latest
 
 - name: Print the current working directory
-  ansible.builtin.shell: ls
+  ansible.builtin.shell: pwd
   args:
     chdir: "{{ app_path }}"
   register: pwd_result
@@ -18,17 +18,6 @@
 - name: Print the current working directory
   ansible.builtin.debug:
     msg: "The current working directory is: {{ pwd_result.stdout }}"
-
-- name: Ensure master.js has appropriate permissions
-  ansible.builtin.file:
-    path: "{{ app_path }}/db/master-data.js"
-    mode: "0644"
-
-- name: Verify db/master.js file exists
-  ansible.builtin.shell: ls -l db/master-data.js
-  args:
-    chdir: "{{ app_path }}"
-
 
 
 - name: Load Master Data
