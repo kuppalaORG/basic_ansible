@@ -2,3 +2,4 @@
 ---
 # vars file for roles/dispatch
 component: rabbitmq
+app_path: /app
