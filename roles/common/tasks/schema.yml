@@ -25,13 +25,13 @@
     mode: "0644"
 
 - name: Verify db/master.js file exists
-  ansible.builtin.shell: ls -l db/master.js
+  ansible.builtin.shell: ls -l db/master-data.js
   args:
     chdir: "{{ app_path }}"
 
 
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech < db/master.js
+  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech < db/master-data.js
   args:
     chdir: "{{ app_path }}"
