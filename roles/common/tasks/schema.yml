@@ -20,9 +20,14 @@
     msg: "The current working directory is: {{ pwd_result.stdout }}"
 
 - name: Verify db/master.js file exists
-  ansible.builtin.shell: ls -l /app/db/master.js
+  ansible.builtin.shell: ls -l db/master.js
   args:
     chdir: "{{ app_path }}"
+
+- name: Ensure master.js has appropriate permissions
+  ansible.builtin.file:
+    path: "{{ app_path }}/db/master.js"
+    mode: "0644"
 
 - name: Load Master Data
   ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech < db/master.js
