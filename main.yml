@@ -7,5 +7,11 @@
     - mongod
     - catalogue
     - redis
+    - cart
+    - mysql
+    - shipping
+    - rabbitmq
+    - payment
+    - dispatch
   roles:
     - "{{ role_name }}"
