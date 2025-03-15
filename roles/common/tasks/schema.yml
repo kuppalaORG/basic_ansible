@@ -10,6 +10,6 @@
     state: latest
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech </app/db/master.js
+  ansible.builtin.shell: mongosh --host mongod.codedeploywithbharath.tech </db/master.js
   args:
-    chdir: /app/db/
+    chdir: "{{ app_path }}"
