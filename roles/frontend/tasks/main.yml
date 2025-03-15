@@ -1,6 +1,4 @@
-#SPDX-License-Identifier: MIT-0
----
-# tasks file for roles/frontend
+
 - name: Disable default nginx module
   ansible.builtin.shell: dnf module disable nginx -y
 
@@ -22,16 +20,6 @@
     name: common
     tasks_from: app-prereq
 
-- name: Remove old content (delete file)
-  ansible.builtin.file:
-    path: rm -rf /usr/share/nginx/html/*
-    state: absent
-
-- name: Download & Extract frontend content
-  ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
 
 - name: Restart service Nginx, in all cases
   ansible.builtin.systemd_service:
