@@ -17,6 +17,11 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
+- name: App Prerequsites
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-prereq
+
 - name: Remove old content (delete file)
   ansible.builtin.file:
     path: rm -rf /usr/share/nginx/html/*

@@ -1,0 +1,19 @@
+- name: Adding application User
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Remvove Old Content
+  ansible.builtin.file:
+    path: "{{ app_path }}"
+    state: absent
+
+- name: Create App Directory
+  ansible.builtin.file:
+    path: "{{ app_path }}"
+
+
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
+    dest: "{{ app_path }}"
+    remote_src: yes
