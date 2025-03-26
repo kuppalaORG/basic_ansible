@@ -7,3 +7,4 @@ schema_setup: mongo
 schema_files:
   - master-data
 
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/catalogue token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"

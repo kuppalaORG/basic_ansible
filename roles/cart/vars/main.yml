@@ -3,3 +3,4 @@
 # vars file for roles/cart
 component: cart
 app_path: /app
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/cart:MYPASS token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech:8200 validate_certs=false')}}"

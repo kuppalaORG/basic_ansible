@@ -3,3 +3,4 @@
 # vars file for roles/payment
 component: payment
 app_path: /app
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/payment token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"

@@ -3,3 +3,5 @@
 # vars file for roles/user
 component: user
 app_path: /app
+
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/user token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"

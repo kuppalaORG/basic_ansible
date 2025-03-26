@@ -3,3 +3,4 @@
 # vars file for roles/mysql
 component: mysql
 app_path: /app
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/mysql token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"
