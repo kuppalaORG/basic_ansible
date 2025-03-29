@@ -8,4 +8,4 @@ schema_files:
   - schema
   - master-data
   - app-user
-secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/shipping token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/shipping token={{vault_token}} url=http://vault-internal.codedeploywithbharath.tech:8200 validate_certs=false')}}"

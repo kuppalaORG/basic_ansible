@@ -2,4 +2,4 @@
 ---
 # vars file for roles/redis
 component: redis
-secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/redis token={{vault_token}} url=https://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"
+secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/redis token={{vault_token}} url=http://vault-internal.codedeploywithbharath.tech:8200 validate_certs=false')}}"
