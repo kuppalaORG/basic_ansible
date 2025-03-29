@@ -5,3 +5,5 @@ component: user
 app_path: /app
 
 secrets: "{{ lookup('hashi_vault', 'secret=roboshop-dev/data/user token={{vault_token}} url=http://vault-internal.codedeploywithbharath.tech validate_certs=false')}}"
+
+#28 1:00 for token for https http check 29
