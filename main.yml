@@ -2,16 +2,21 @@
   hosts: all
   become: true
   vars:
+    role_aliases:
+      mongo: mongod   # Map "mongo" to "mongod"
+    default_role: mongod  # Fallback to "mongod" if role is unrecognized
+    # Automatically handle alias mapping or use original role_name
+    resolved_role_name: "{{ role_aliases[role_name] | default(role_name) }}"
     role_name:
-    - frontend
-    - mongod
-    - catalogue
-    - redis
-    - cart
-    - mysql
-    - shipping
-    - rabbitmq
-    - payment
-    - dispatch
+      - frontend
+      - mongod
+      - catalogue
+      - redis
+      - cart
+      - mysql
+      - shipping
+      - rabbitmq
+      - payment
+      - dispatch
   roles:
-    - "{{ role_name }}"
+    - "{{ resolved_role_name }}"
